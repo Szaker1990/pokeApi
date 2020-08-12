@@ -24,8 +24,7 @@ height: calc(100% - 40px);
 display: flex;
 flex-direction: column;
 align-items: center;
-`
-
+`;
 export const MainPage = () => {
     return(
         <Container>
