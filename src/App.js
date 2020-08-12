@@ -2,12 +2,12 @@ import React from 'react';
 import './App.scss';
 import styled from 'styled-components'
 import {MainPage} from "./components/MainPage";
-import {Reset} from 'styled-reset'
+import {Normalize} from 'styled-normalize'
 
 function App() {
     return (
         <div className="App">
-            <Reset/>
+            <Normalize/>
             <MainPage/>
         </div>
     );

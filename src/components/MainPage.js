@@ -21,7 +21,6 @@ const ColumnRight = styled.div`
 width: 50%;
 margin: 20px;
 height: calc(100% - 40px);
-background: yellow;
 display: flex;
 flex-direction: column;
 align-items: center;
