@@ -12,12 +12,13 @@ font-weight 600;
 `;
 const Text = styled.p`
 font-weight: 400;
+text-transform: capitalize;
 `;
 export const DataCell = ({title,text}) => {
     return(
         <Div>
             <Header>{title}:</Header>
-            <Text>{text}</Text>
+            <Text> {text} </Text>
         </Div>
     )
 }

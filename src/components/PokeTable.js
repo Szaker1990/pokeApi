@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import styled from 'styled-components'
-import { useHistory } from "react-router-dom";
-import {PokePage} from "./PokePage";
 
 const Table = styled.table`
 margin-top: 10px;
@@ -32,6 +30,12 @@ max-height: 50px;
 margin: auto;
 font-size: 25px;
 font-weight: bold;
+&:nth-of-type(6) {
+cursor: pointer;
+&:hover {
+background: #356eb7;
+color: #f9e01d;
+}
 `;
 const Img = styled.img`
 height: 50px;
@@ -49,6 +53,7 @@ font-weight: 600;
 margin: 25px 20px;
 border: none;
 outline:none;
+cursor: pointer;
 &:hover {
     background: #225fad;
     color: #f9e01d;
@@ -96,9 +101,6 @@ export const PokeTable = ({func}) => {
     }, [currentPokemons]);
     if(!dataLoading) return <h1>Loading Data...</h1>
 
-    const Pokedex = (e) => {
-        return <PokePage/>
-    }
     return(
         <>
         <Table>
@@ -107,9 +109,9 @@ export const PokeTable = ({func}) => {
                 <Th>ID</Th>
                 <Th>POKEMON</Th>
                 <Th>NAZWA</Th>
-                <Th>MIN.LVL</Th>
+                <Th>BASE EXP</Th>
                 <Th>TYP</Th>
-                <Th>EWOLUCJA</Th>
+                <Th>WIECEJ INFORMACJI</Th>
             </Tr>
             </thead>
             <tbody>
@@ -118,7 +120,7 @@ export const PokeTable = ({func}) => {
                     <Td >{pokemon.id.toString().padStart(3,"0")}</Td>
                     <Td><Img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`} alt={"pokemon not in base"}/></Td>
                     <Td>{pokemon.name}</Td>
-                    <Td></Td>
+                    <Td>{pokemon.base_experience}</Td>
                     <Td>{pokemon.types[0].type.name}</Td>
                     <Td id={pokemon.id}>wiecej informacji</Td>
                 </Tr>
