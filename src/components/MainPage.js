@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from 'styled-components'
 import background from "../assets/bg.png"
 import logo from "../assets/logo.png"
 import {PokeTable} from "./PokeTable";
+import {PokePage} from "./PokePage";
 
 const Container = styled.div`
 height: 100vh;
@@ -26,14 +27,19 @@ flex-direction: column;
 align-items: center;
 `;
 export const MainPage = () => {
+    const[pokemon,setPokemon] = useState(null)
+
+    const ViewPokemonData = (e) => {
+        setPokemon(e.target.id)
+    }
+    if(pokemon) return <PokePage pokeData={pokemon}/>
     return(
         <Container>
             <ColumnLeft/>
             <ColumnRight>
-                <img src={logo} alt={"Pokemon loogo"}/>
-                <PokeTable/>
+                <img src={logo} alt={"Pokemon logo"}/>
+                <PokeTable func={ViewPokemonData}/>
             </ColumnRight>
-
         </Container>
 
     )
