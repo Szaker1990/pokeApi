@@ -1,29 +1,73 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
 import logo from "../assets/logo.png"
+import charmander from "../assets/Charmander_by_xous54.png"
+import {DataCell} from "./DataCell";
 
 const Header = styled.div`
 height: 20vh;
 width: 100%;
 display: flex;
 justify-content: center;
-align-items: center`;
+align-items: center
+`;
 const DataContainer = styled.div`
+display: flex;
+justify-content: space-between;
 height: 60vh;
 width100%;
-background: yellow;`;
+font-family: 'Oswald', sans-serif;
+`;
 const Footer = styled.div`
 height: 20vh;
 width: 100%;
-background: red`
+background: red;
+font-family: 'Oswald', sans-serif;
+`;
 const Table = styled.table`
+width: 25%;
+height: 90%;
+margin-left: 20px;
 `;
 const Th = styled.th`
+background: #f9e01d;
+color: #356eb7;
+border: none
+text-transform: uppercase;
+font-weight : 800;
+text-align: left;
+text-transform: uppercase;
+font-style: italic;
+font-size: 20px;
+font-family: 'Oswald', sans-serif;
+padding-left 20px;
+height: 50px;
 `;
-
 const Td = styled.td`
-`
-
+color: #356eb7;
+background:#f4f4f4;
+border: 1px solid white;
+font-family: 'Oswald', sans-serif;
+width: 60%;
+padding-left 20px;
+&:nth-of-type(2) {
+text-align: center;
+width: 40%;
+}
+`;
+const JumboImg = styled.img`
+width: 40%;
+height 80%;
+`;
+const DataWrapper = styled.div`
+width: 25%;
+height: 100%;
+`;
+const Legend = styled.p`
+color: #356eb7;
+width:80%;
+margin-left: 10px;
+`;
 export const PokePage = ({pokeData}) => {
     const [pokemonId] = useState(pokeData)
     const [Pokemon,setPokemon] = useState({
@@ -33,13 +77,12 @@ export const PokePage = ({pokeData}) => {
 
     })
     const [PokemonStats,setPokemonStats] = useState({
-        attack: "",
-        def: "",
-        sp_attack: "",
-        sp_def: "",
-        life: "",
+        attack: "2",
+        def: "3",
+        sp_attack: "4",
+        sp_def: "5",
+        life: "15",
     })
-
     return(
         <>
             <Header>
@@ -49,34 +92,52 @@ export const PokePage = ({pokeData}) => {
                 <Table>
                     <thead>
                     <tr>
-                        <th>Przyrosty</th>
-                        <th></th>
+                        <Th colSpan={2}>Przyrosty</Th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>ATAK</td>
-                        <td>{PokemonStats.attack}</td>
+                        <Td>ATAK</Td>
+                        <Td>{PokemonStats.attack}</Td>
                     </tr>
                     <tr>
-                        <td>OBRONA</td>
-                        <td>{PokemonStats.def}</td>
+                        <Td>OBRONA</Td>
+                        <Td>{PokemonStats.def}</Td>
                     </tr>
                     <tr>
-                        <td>SP.ATAK</td>
-                        <td>{PokemonStats.sp_attack}</td>
+                        <Td>SP.ATAK</Td>
+                        <Td>{PokemonStats.sp_attack}</Td>
                     </tr>
                     <tr>
-                        <td>SP.OBRONA</td>
-                        <td>{PokemonStats.sp_def}</td>
+                        <Td>SP.OBRONA</Td>
+                        <Td>{PokemonStats.sp_def}</Td>
                     </tr>
                     <tr>
-                        <td>ZYCIE</td>
-                        <td>{PokemonStats.life}</td>
+                        <Td>ZYCIE</Td>
+                        <Td>{PokemonStats.life}</Td>
                     </tr>
                     </tbody>
                 </Table>
-
+                <JumboImg src={charmander}/>
+                <DataWrapper>
+                    <div>
+                        <Legend>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, cum deleniti excepturi
+                            inventore laboriosam officiis optio repellat totam unde? A ab amet aperiam at beatae debitis
+                            delectus dolorem, earum, eligendi hic iusto nam sint voluptatem? A dignissimos molestias
+                            saepe vitae.
+                        </Legend>
+                    </div>
+                    <div>
+                        <DataCell title={"Typ"}/>
+                        <DataCell title={"Płeć"}/>
+                        <DataCell title={"Region"}/>
+                        <DataCell title={"Występowanie w Dziczy"}/>
+                        <DataCell title={"Możłiwość złapania"}/>
+                        <DataCell title={"Trudność Złapania"}/>
+                        <DataCell title={"Występowanie Shiny"}/>
+                        <DataCell title={"Dodawany do kolekcji przez"}/>
+                    </div>
+                </DataWrapper>
 
             </DataContainer>
             <Footer>
