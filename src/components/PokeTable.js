@@ -40,13 +40,13 @@ padding: 5px 0;
 `;
 const DataButton = styled.button`
 text-decoration: none;
-height: 50px;
+height: 40px;
 width: 70px;
 background: #f9e01d;
 color: #225fad;
 text-transform : uppercase;
 font-weight: 600;
-margin: 35px 20px;
+margin: 25px 20px;
 border: none;
 outline:none;
 &:hover {

@@ -1,15 +1,17 @@
 import React, {useState} from "react";
-import styled from 'styled-components'
-import logo from "../assets/logo.png"
-import charmander from "../assets/Charmander_by_xous54.png"
+import styled from 'styled-components';
+import logo from "../assets/logo.png";
+import charmander from "../assets/Charmander_by_xous54.png";
 import {DataCell} from "./DataCell";
+import right from "../assets/angle-right-solid.svg";
+import left from "../assets/angle-left-solid.svg";
 
 const Header = styled.div`
 height: 20vh;
 width: 100%;
 display: flex;
 justify-content: center;
-align-items: center
+align-items: center;
 `;
 const DataContainer = styled.div`
 display: flex;
@@ -19,9 +21,11 @@ width100%;
 font-family: 'Oswald', sans-serif;
 `;
 const Footer = styled.div`
+display: flex;
+justify-content: space-around;
+align-items: center;
 height: 20vh;
 width: 100%;
-background: red;
 font-family: 'Oswald', sans-serif;
 `;
 const Table = styled.table`
@@ -32,7 +36,7 @@ margin-left: 20px;
 const Th = styled.th`
 background: #f9e01d;
 color: #356eb7;
-border: none
+border: none;
 text-transform: uppercase;
 font-weight : 800;
 text-align: left;
@@ -61,20 +65,40 @@ height 80%;
 `;
 const DataWrapper = styled.div`
 width: 25%;
-height: 100%;
+height: 90%;
 `;
 const Legend = styled.p`
 color: #356eb7;
 width:80%;
 margin-left: 10px;
 `;
+const ButtonWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+background: #f9e01d;
+color:#356eb7; 
+padding 5px`;
+const Arrow = styled.img`
+height: 50px;
+width: 50px;
+color yellow; 
+`;
+const FooterHead = styled.h2`
+font-size 60px;
+font-weight: 600;
+margin 0 15%;
+color: #356eb7;
+`;
+const ButtonText = styled.p`
+font-weight: 600;
+font-size: 30pButtonText`
 export const PokePage = ({pokeData}) => {
     const [pokemonId] = useState(pokeData)
     const [Pokemon,setPokemon] = useState({
         name: "",
         number: "",
         img: "",
-
     })
     const [PokemonStats,setPokemonStats] = useState({
         attack: "2",
@@ -138,10 +162,17 @@ export const PokePage = ({pokeData}) => {
                         <DataCell title={"Dodawany do kolekcji przez"}/>
                     </div>
                 </DataWrapper>
-
             </DataContainer>
             <Footer>
-
+                <ButtonWrapper>
+                    <Arrow src={left}/>
+                    <ButtonText>POWRÓT</ButtonText>
+                </ButtonWrapper>
+                <FooterHead>001 BULBASAUR</FooterHead>
+                <ButtonWrapper>
+                    <ButtonText>NASTĘPNY</ButtonText>
+                    <Arrow src={right}/>
+                </ButtonWrapper>
             </Footer>
         </>
     )
