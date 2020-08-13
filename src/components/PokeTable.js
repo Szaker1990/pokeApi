@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import styled from 'styled-components'
-
 const Table = styled.table`
 margin-top: 10px;
 width:100%;
@@ -66,9 +65,8 @@ export const PokeTable = ({func}) => {
     const [pokeData,setPokeData] = useState([]);
     const [nextUrl, setNextUrl] = useState(null);
     const [prevUrl, setPrevUrl] = useState(null);
-    const [currentPokemons] = useState(0)
-    const sorted = pokeData.sort((a,b) => a.id-b.id)
-
+    const [currentPokemons] = useState(0);
+    const sorted = pokeData.sort((a,b) => a.id-b.id);
     const fetchPokemonData = (pokemon) => {
         let url = pokemon.url
         fetch(url)
@@ -100,6 +98,7 @@ export const PokeTable = ({func}) => {
         getPokemons(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`);
     }, [currentPokemons]);
     if(!dataLoading) return <h1>Loading Data...</h1>
+
 
     return(
         <>

@@ -59,7 +59,7 @@ width: 40%;
 }
 `;
 const JumboImg = styled.img`
-width: 40%;
+width: 30%;
 height 80%;
 `;
 const DataWrapper = styled.div`
@@ -101,8 +101,12 @@ const ButtonText = styled.p`
 font-weight: 600;
 font-size: 30px;
 `;
+const Bold = styled.h2`
+font-weight 600;
+text-transform: capitalize;
+`
 export const PokePage = ({pokeData}) => {
-    const[loading,setLoading] = useState(false)
+    const[loading,setLoading] = useState(false);
     const [pokemonId,setPokemonId] = useState(parseInt(pokeData));
     const [pokemon,setPokemon] = useState({
         name: "",
@@ -110,18 +114,18 @@ export const PokePage = ({pokeData}) => {
         img: "",
         type: "",
         shiny:"Brak"
-    })
+    });
     const [pokemonStats,setPokemonStats] = useState({
         attack: "2",
         def: "3",
         sp_attack: "4",
         sp_def: "5",
         life: "15",
-    })
-    const [region,setRegion] = useState("")
-    const [gender,setGender] = useState("")
-    const [encounter,setEncounter] = useState("")
-    const [captureRate,setCaptureRate] = useState("")
+    });
+    const [region,setRegion] = useState("");
+    const [gender,setGender] = useState("");
+    const [encounter,setEncounter] = useState("");
+    const [captureRate,setCaptureRate] = useState("");
     const getPokemonData = (url) => {
         fetch(url)
             .then( resp => resp.json())
@@ -131,8 +135,8 @@ export const PokePage = ({pokeData}) => {
                     name: data.name,
                     number: data.id,
                     img: data.sprites.front_default,
-                    type: data.types[0].type.name,
-                    shiny: data.sprites.front_shiny.lenght > 1? "No" : "Yes"
+                    type: data.types.map((pokeType) =>pokeType.type.name),
+                    shiny: data.sprites.front_shiny.lenght > 1? "Nie" : "Tak"
                 }
                 let currPokeStats = {
                     attack: data.stats[1].base_stat,
@@ -147,31 +151,11 @@ export const PokePage = ({pokeData}) => {
             })
             .catch( err => console.log(err));
     }
-    // const FetchData = (url,dataSetter,dataName) => {
-    //     fetch(url)
-    //         .then( resp => resp.json())
-    //         .then( data => {
-    //
-    //             dataSetter(dataName)
-    //             console.log(data[dataName]);
-    //         })
-    //         .catch( err => console.log(err));
-    // }
-
-    const fetchGender = (url) => {
-        fetch(url)
-            .then( resp => resp.json())
-            .then( data => {
-                setGender(data.name)
-
-            })
-            .catch( err => setGender("No data"));
-    }
     const fetchRegion = (url) => {
         fetch(url)
             .then( resp => resp.json())
             .then( data => {
-                setRegion(data.main_region.name)
+                setRegion(data.region.name)
             })
             .catch( err => setRegion("No data"));
     }
@@ -188,19 +172,33 @@ export const PokePage = ({pokeData}) => {
             .then( resp => resp.json())
             .then( data => {
                 setCaptureRate(data.capture_rate);
+                setGender(data.gender_rate)
             })
             .catch( err => console.log(err));
     }
+    const calculateGender = (genderRatio) => {
+        if(genderRatio === -1) return "brak"
+        else{
+        let femaleChance = genderRatio /8.0 * 100
+        let maleChance = 100 - femaleChance
+        let text = `${femaleChance}% samica , ${maleChance}% samiec`
+        return text
+        }
+    }
     useEffect(() =>{
         getPokemonData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-        // FetchData(`https://pokeapi.co/api/v2/generation/${pokemonId}`,setRegion, 'main_region')
-        fetchGender(`https://pokeapi.co/api/v2/gender/${pokemonId}`);
-        fetchRegion(`https://pokeapi.co/api/v2/generation/${pokemonId}`);
+        fetchRegion(`https://pokeapi.co/api/v2/pokedex/${pokemonId}`);
         fetchEncounter(`https://pokeapi.co/api/v2/encounter-method/${pokemonId}`);
         fetchCaptureRate(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
     },[pokemonId])
-
-
+    const calculateCatch = (rate) => {
+        if(rate>=200) return "Trudno"
+        if(rate>100) return "Średnio"
+        if(rate<100) return "Łatwo"
+    }
+    const ableToCatch = (rate) => {
+        return rate >0 ? "Tak": "Nie"
+    }
     if(!loading) return <h1>Loading Data...</h1>
     return(
         <>
@@ -240,21 +238,22 @@ export const PokePage = ({pokeData}) => {
                 <JumboImg alt={"pokemon"} src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.number}.png`}/>
                 <DataWrapper>
                     <div>
-                        <Legend>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, cum deleniti excepturi
-                            inventore laboriosam officiis optio repellat totam unde? A ab amet aperiam at beatae debitis
-                            delectus dolorem, earum, eligendi hic iusto nam sint voluptatem? A dignissimos molestias
-                            saepe vitae.
+                        <Legend><Bold>{pokemon.name}</Bold>Pokem ipsum dolor sit amet Exeggutor Kecleon Wing Attack Doduo Red Unown.
+                            Sunt in culpa Drilbur Calcium Hoenn Shieldon Wynaut Charizard. Growl Venonat Scolipede Espeon
+                            Charizard Barboach Hidden Machine. Duis aute irure dolor in reprehenderit in voluptate they're
+                            comfy and easy to wear Onix what kind of Pokemon are you Fog Badge Ampharos Noctowl. Pewter City
+                            Marill Slakoth Bronzong Rattata Treecko Cottonee.
                         </Legend>
                     </div>
                     <div>
-                        <DataCell title={"Typ"} text={pokemon.type}/>
-                        <DataCell title={"Płeć"} text={gender}/>
+                        <DataCell title={"Typ"} text={pokemon.type.join(", ")}/>
+                        <DataCell title={"Płeć"} text={calculateGender(gender)}/>
                         <DataCell title={"Region"} text={region}/>
                         <DataCell title={"Występowanie w Dziczy"} text={encounter}/>
-                        <DataCell title={"Możłiwość złapania"} text={captureRate}/>
-                        <DataCell title={"Trudność Złapania"}/>
+                        <DataCell title={"Możłiwość złapania"} text={ableToCatch(captureRate)}/>
+                        <DataCell title={"Trudność Złapania"} text={calculateCatch(captureRate)}/>
                         <DataCell title={"Występowanie Shiny"} text={pokemon.shiny}/>
-                        <DataCell title={"Dodawany do kolekcji przez"}/>
+                        <DataCell title={"Dodawany do kolekcji przez"} text={"Pokeball"}/>
                     </div>
                 </DataWrapper>
             </DataContainer>
