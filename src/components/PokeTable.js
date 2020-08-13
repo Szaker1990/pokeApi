@@ -75,7 +75,7 @@ export const PokeTable = ({func}) => {
                 setDataLoading(true)
                 setPokeData(prevState => [...prevState,data])
             })
-    }
+    };
     const getPokemons = (url) => {
         fetch(url)
             .then( resp => resp.json())
@@ -87,13 +87,13 @@ export const PokeTable = ({func}) => {
                 })
             })
             .catch( err => console.log(err));
-    }
+    };
     const handleChangePage = (e, url) => {
         e.preventDefault()
         setDataLoading(false)
         setPokeData([])
         getPokemons(url);
-    }
+    };
     useEffect(()=>{
         getPokemons(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`);
     }, [currentPokemons]);

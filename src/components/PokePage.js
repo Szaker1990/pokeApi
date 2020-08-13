@@ -199,6 +199,18 @@ export const PokePage = ({pokeData}) => {
     const ableToCatch = (rate) => {
         return rate >0 ? "Tak": "Nie"
     }
+    const handlePokemonError = () => {
+        if(pokemonId ===1 ) setPokemonId(807)
+        else{
+            setPokemonId(prevState => prevState - 1)
+        }
+    }
+    const handlePokeError = () => {
+        if(pokemonId ===807) setPokemonId(1)
+        else{
+            setPokemonId(prevState => prevState + 1)
+        }
+    }
     if(!loading) return <h1>Loading Data...</h1>
     return(
         <>
@@ -258,12 +270,12 @@ export const PokePage = ({pokeData}) => {
                 </DataWrapper>
             </DataContainer>
             <Footer>
-                <ButtonWrapper onClick={() => setPokemonId(prevState => prevState - 1)}>
+                <ButtonWrapper onClick={handlePokemonError}>
                         <Arrow src={left}/>
                         <ButtonText>POWRÓT</ButtonText>
                 </ButtonWrapper>
                 <FooterHead>{pokemon.number.toString().padStart(3,"0")} {pokemon.name}</FooterHead>
-                <ButtonWrapper onClick={() => setPokemonId(prevState => prevState + 1)}>
+                <ButtonWrapper onClick={handlePokeError}>
                     <ButtonText>NASTĘPNY</ButtonText>
                     <Arrow src={right}/>
                 </ButtonWrapper>
