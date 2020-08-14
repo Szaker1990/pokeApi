@@ -27,11 +27,10 @@ flex-direction: column;
 align-items: center;
 `;
 export const MainPage = () => {
-    const[pokemon,setPokemon] = useState(null)
-
+    const[pokemon,setPokemon] = useState(null);
     const ViewPokemonData = (e) => {
-        setPokemon(e.target.id)
-    }
+        setPokemon(e.target.id);
+    };
     if(pokemon) return <PokePage pokeData={pokemon}/>
     return(
         <Container>
@@ -41,6 +40,5 @@ export const MainPage = () => {
                 <PokeTable func={ViewPokemonData}/>
             </ColumnRight>
         </Container>
-
     )
 }

@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
 import styled from 'styled-components'
+
 const Table = styled.table`
 margin-top: 10px;
 width:100%;
 border:1px solid #C0C0C0;
 border-collapse:collapse;
-padding:5px
-;`
-const Tr = styled.tr`
+padding:5px;
 `;
 const Th = styled.th`
 border:1px solid #C0C0C0;
@@ -29,12 +28,12 @@ max-height: 50px;
 margin: auto;
 font-size: 25px;
 font-weight: bold;
-&:nth-of-type(6) {
-cursor: pointer;
-&:hover {
-background: #356eb7;
-color: #f9e01d;
-}
+    &:nth-of-type(6) {
+    cursor: pointer;
+        &:hover {
+        background: #356eb7;
+        color: #f9e01d;
+        }
 `;
 const Img = styled.img`
 height: 50px;
@@ -53,14 +52,14 @@ margin: 25px 20px;
 border: none;
 outline:none;
 cursor: pointer;
-&:hover {
+    &:hover {
     background: #225fad;
     color: #f9e01d;
     border: none;
     outline:none;
   }
 `;
-export const PokeTable = ({func}) => {
+export const PokeTable = ({ func }) => {
     const [dataLoading,setDataLoading] = useState(false);
     const [pokeData,setPokeData] = useState([]);
     const [nextUrl, setNextUrl] = useState(null);
@@ -72,8 +71,8 @@ export const PokeTable = ({func}) => {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                setDataLoading(true)
-                setPokeData(prevState => [...prevState,data])
+                setDataLoading(true);
+                setPokeData(prevState => [...prevState,data]);
             })
     };
     const getPokemons = (url) => {
@@ -82,47 +81,45 @@ export const PokeTable = ({func}) => {
             .then( data => {
                 setNextUrl(data.next);
                 setPrevUrl(data.previous);
-                data.results.map((pokemon) => {
+                data.results.map((pokemon) =>
                     fetchPokemonData(pokemon)
-                })
+                )
             })
             .catch( err => console.log(err));
     };
     const handleChangePage = (e, url) => {
-        e.preventDefault()
-        setDataLoading(false)
-        setPokeData([])
+        e.preventDefault();
+        setDataLoading(false);
+        setPokeData([]);
         getPokemons(url);
     };
     useEffect(()=>{
         getPokemons(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`);
     }, [currentPokemons]);
     if(!dataLoading) return <h1>Loading Data...</h1>
-
-
     return(
         <>
         <Table>
             <thead>
-            <Tr>
+            <tr>
                 <Th>ID</Th>
                 <Th>POKEMON</Th>
                 <Th>NAZWA</Th>
                 <Th>BASE EXP</Th>
                 <Th>TYP</Th>
                 <Th>WIECEJ INFORMACJI</Th>
-            </Tr>
+            </tr>
             </thead>
             <tbody>
             {sorted.map(pokemon => (
-                <Tr onClick={func} key={pokemon.name}>
+                <tr onClick={func} key={pokemon.name}>
                     <Td >{pokemon.id.toString().padStart(3,"0")}</Td>
                     <Td><Img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`} alt={"pokemon not in base"}/></Td>
                     <Td>{pokemon.name}</Td>
                     <Td>{pokemon.base_experience}</Td>
                     <Td>{pokemon.types[0].type.name}</Td>
                     <Td id={pokemon.id}>wiecej informacji</Td>
-                </Tr>
+                </tr>
             ))}
             </tbody>
         </Table>

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import {MainPage} from "./components/MainPage";
 import {Normalize} from 'styled-normalize'
 import {Route, Switch} from "react-router-dom";
@@ -9,7 +8,7 @@ function App() {
         <>
         <Normalize/>
         <Switch>
-            <Route exact path="/" render={(props) => <MainPage {...props} />} />
+            <Route exact path="/" render={() => <MainPage/>} />
         </Switch>
         </>
     );

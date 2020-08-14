@@ -10,7 +10,7 @@ height: 20vh;
 width: 100%;
 display: flex;
 justify-content: center;
-align-items: center
+align-items: center;
 `;
 const DataContainer = styled.div`
 display: flex;
@@ -53,10 +53,10 @@ border: 1px solid white;
 font-family: 'Oswald', sans-serif;
 width: 60%;
 padding-left 20px;
-&:nth-of-type(2) {
-text-align: center;
-width: 40%;
-}
+    &:nth-of-type(2) {
+    text-align: center;
+    width: 40%;
+    }
 `;
 const JumboImg = styled.img`
 width: 30%;
@@ -81,7 +81,6 @@ padding: 5px 20px;
 cursor: pointer;
 user-select: none;
 `;
-
 const Arrow = styled.img`
 height: 50px;
 width: 50px;
@@ -104,8 +103,8 @@ font-size: 30px;
 const Bold = styled.h2`
 font-weight 600;
 text-transform: capitalize;
-`
-export const PokePage = ({pokeData}) => {
+`;
+export const PokePage = ({ pokeData }) => {
     const[loading,setLoading] = useState(false);
     const [pokemonId,setPokemonId] = useState(parseInt(pokeData));
     const [pokemon,setPokemon] = useState({
@@ -147,26 +146,26 @@ export const PokePage = ({pokeData}) => {
                 }
                 setPokemon(currPoke);
                 setPokemonStats(currPokeStats);
-                setLoading(true)
+                setLoading(true);
             })
             .catch( err => console.log(err));
-    }
+    };
     const fetchRegion = (url) => {
         fetch(url)
             .then( resp => resp.json())
             .then( data => {
                 setRegion(data.region.name)
             })
-            .catch( err => setRegion("No data"));
-    }
+            .catch( err => setRegion("Brak danych"));
+    };
     const fetchEncounter = (url) => {
         fetch(url)
             .then( resp => resp.json())
             .then( data => {
                 setEncounter(data.name);
             })
-            .catch( err => setEncounter("No data"));
-    }
+            .catch( err => setEncounter("Brak danych"));
+    };
     const fetchCaptureRate = (url) => {
         fetch(url)
             .then( resp => resp.json())
@@ -175,42 +174,45 @@ export const PokePage = ({pokeData}) => {
                 setGender(data.gender_rate)
             })
             .catch( err => console.log(err));
-    }
+    };
     const calculateGender = (genderRatio) => {
-        if(genderRatio === -1) return "brak"
+        if(genderRatio === -1) return "Brak danych"
         else{
         let femaleChance = genderRatio /8.0 * 100
         let maleChance = 100 - femaleChance
         let text = `${femaleChance}% samica , ${maleChance}% samiec`
         return text
         }
-    }
+    };
     useEffect(() =>{
         getPokemonData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
         fetchRegion(`https://pokeapi.co/api/v2/pokedex/${pokemonId}`);
         fetchEncounter(`https://pokeapi.co/api/v2/encounter-method/${pokemonId}`);
         fetchCaptureRate(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
-    },[pokemonId])
+    },[pokemonId]);
     const calculateCatch = (rate) => {
-        if(rate>=200) return "Trudno"
-        if(rate>100) return "Średnio"
-        if(rate<100) return "Łatwo"
-    }
+        if(rate === 255) return "Łatwo"
+        if(rate>=200) return "Średnio"
+        if(rate>100) return "Trudno"
+        if(rate<100) return "Bardzo Trudno"
+    };
     const ableToCatch = (rate) => {
         return rate >0 ? "Tak": "Nie"
-    }
+    };
     const handlePokemonError = () => {
         if(pokemonId ===1 ) setPokemonId(807)
-        else{
+        else
+            {
             setPokemonId(prevState => prevState - 1)
         }
-    }
+    };
     const handlePokeError = () => {
         if(pokemonId ===807) setPokemonId(1)
-        else{
+        else
+            {
             setPokemonId(prevState => prevState + 1)
         }
-    }
+    };
     if(!loading) return <h1>Loading Data...</h1>
     return(
         <>
