@@ -16,7 +16,7 @@ const DataContainer = styled.div`
 display: flex;
 justify-content: space-between;
 height: 60vh;
-width100%;
+width: 100%;
 font-family: 'Oswald', sans-serif;
 `;
 const Footer = styled.div`
@@ -43,7 +43,7 @@ text-transform: uppercase;
 font-style: italic;
 font-size: 20px;
 font-family: 'Oswald', sans-serif;
-padding-left 20px;
+padding-left: 20px;
 height: 50px;
 `;
 const Td = styled.td`
@@ -60,7 +60,7 @@ padding-left 20px;
 `;
 const JumboImg = styled.img`
 width: 30%;
-height 80%;
+height: 80%;
 `;
 const DataWrapper = styled.div`
 width: 25%;
@@ -84,7 +84,7 @@ user-select: none;
 const Arrow = styled.img`
 height: 50px;
 width: 50px;
-color yellow; 
+color: yellow; 
 `;
 const FooterHead = styled.h2`
 font-size 60px;
@@ -101,7 +101,7 @@ font-weight: 600;
 font-size: 30px;
 `;
 const Bold = styled.h2`
-font-weight 600;
+font-weight: 600;
 text-transform: capitalize;
 `;
 export const PokePage = ({ pokeData }) => {
