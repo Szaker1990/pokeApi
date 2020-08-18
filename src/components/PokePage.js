@@ -39,7 +39,6 @@ border: none;
 text-transform: uppercase;
 font-weight : 800;
 text-align: left;
-text-transform: uppercase;
 font-style: italic;
 font-size: 20px;
 font-family: 'Oswald', sans-serif;
@@ -52,7 +51,7 @@ background:#f4f4f4;
 border: 1px solid white;
 font-family: 'Oswald', sans-serif;
 width: 60%;
-padding-left 20px;
+padding-left: 20px;
     &:nth-of-type(2) {
     text-align: center;
     width: 40%;
@@ -87,7 +86,7 @@ width: 50px;
 color: yellow; 
 `;
 const FooterHead = styled.h2`
-font-size 60px;
+font-size: 60px;
 font-weight: 600;
 color: #356eb7;
 text-transform: uppercase;
@@ -129,7 +128,6 @@ export const PokePage = ({ pokeData }) => {
         fetch(url)
             .then( resp => resp.json())
             .then( data => {
-                console.log(data);
                 let currPoke = {
                     name: data.name,
                     number: data.id,
