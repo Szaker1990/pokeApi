@@ -14,18 +14,20 @@ display: flex;
 const ColumnLeft = styled.div`
 width: 50%;
 margin: 20px;
-height: calc(100% - 40px);
 background: #ffffff url(${background}) no-repeat;
 background-size: cover
 `;
 const ColumnRight = styled.div`
 width: 50%;
-margin: 20px;
-height: calc(100% - 40px);
+margin: 0 20px;
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 `;
+const Img = styled.img`
+height: 80px;
+`
 export const MainPage = () => {
     const[pokemon,setPokemon] = useState(null);
     const ViewPokemonData = (e) => {
@@ -36,7 +38,7 @@ export const MainPage = () => {
         <Container>
             <ColumnLeft/>
             <ColumnRight>
-                <img src={logo} alt={"Pokemon logo"}/>
+                <Img src={logo} alt={"Pokemon logo"}/>
                 <PokeTable func={ViewPokemonData}/>
             </ColumnRight>
         </Container>

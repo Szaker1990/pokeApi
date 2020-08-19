@@ -6,7 +6,7 @@ import right from "../assets/angle-right-solid.svg";
 import left from "../assets/angle-left-solid.svg";
 
 const Header = styled.div`
-height: 20vh;
+height: 15vh;
 width: 100%;
 display: flex;
 justify-content: center;
@@ -40,7 +40,7 @@ text-transform: uppercase;
 font-weight : 800;
 text-align: left;
 font-style: italic;
-font-size: 20px;
+font-size: 16px;
 font-family: 'Oswald', sans-serif;
 padding-left: 20px;
 height: 50px;
@@ -63,7 +63,9 @@ height: 80%;
 `;
 const DataWrapper = styled.div`
 width: 25%;
-height: 90%;
+display: flex;
+justify-content: center;
+flex-direction: column;
 `;
 const Legend = styled.p`
 color: #356eb7;
@@ -76,9 +78,10 @@ justify-content: center;
 align-items: center;
 background: #f9e01d;
 color:#356eb7; 
-padding: 5px 20px;
+padding: 5px 10px;
 cursor: pointer;
 user-select: none;
+margin-top: 55px;
 `;
 const Arrow = styled.img`
 height: 50px;
@@ -97,7 +100,7 @@ align-items: center;
 `;
 const ButtonText = styled.p`
 font-weight: 600;
-font-size: 30px;
+font-size: 25px;
 `;
 const Bold = styled.h2`
 font-weight: 600;
@@ -191,10 +194,11 @@ export const PokePage = ({ pokeData }) => {
     const calculateCatch = (rate) => {
         if(rate === 255) return "Łatwo"
         if(rate>=200) return "Średnio"
-        if(rate>100) return "Trudno"
+        if(rate>=100) return "Trudno"
         if(rate<100) return "Bardzo Trudno"
     };
     const ableToCatch = (rate) => {
+        if(!rate) return "Brak danych"
         return rate >0 ? "Tak": "Nie"
     };
     const handlePokemonError = () => {
