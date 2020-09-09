@@ -6,105 +6,105 @@ import right from "../assets/angle-right-solid.svg";
 import left from "../assets/angle-left-solid.svg";
 
 const Header = styled.div`
-height: 15vh;
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+ height: 15vh;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 `;
 const DataContainer = styled.div`
-display: flex;
-justify-content: space-between;
-height: 60vh;
-width: 100%;
-font-family: 'Oswald', sans-serif;
+ display: flex;
+ justify-content: space-between;
+ height: 60vh;
+ width: 100%;
+ font-family: 'Oswald', sans-serif;
 `;
 const Footer = styled.div`
-display: flex;
-justify-content: space-around;
-align-items: center;
-height: 20vh;
-width: 100%;
-font-family: 'Oswald', sans-serif;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ height: 20vh;
+ width: 100%;
+ font-family: 'Oswald', sans-serif;
 `;
 const Table = styled.table`
-width: 25%;
-height: 90%;
-margin-left: 20px;
+ width: 25%;
+ height: 90%;
+ margin-left: 20px;
 `;
 const Th = styled.th`
-background: #f9e01d;
-color: #356eb7;
-border: none;
-text-transform: uppercase;
-font-weight : 800;
-text-align: left;
-font-style: italic;
-font-size: 16px;
-font-family: 'Oswald', sans-serif;
-padding-left: 20px;
-height: 50px;
+ background: #f9e01d;
+ color: #356eb7;
+ border: none;
+ text-transform: uppercase;
+ font-weight : 800;
+ text-align: left;
+ font-style: italic;
+ font-size: 16px;
+ font-family: 'Oswald', sans-serif;
+ padding-left: 20px;
+ height: 50px;
 `;
 const Td = styled.td`
-color: #356eb7;
-background:#f4f4f4;
-border: 1px solid white;
-font-family: 'Oswald', sans-serif;
-width: 60%;
-padding-left: 20px;
+ color: #356eb7;
+ background:#f4f4f4;
+ border: 1px solid white;
+ font-family: 'Oswald', sans-serif;
+ width: 60%;
+ padding-left: 20px;
     &:nth-of-type(2) {
     text-align: center;
     width: 40%;
     }
 `;
 const JumboImg = styled.img`
-width: 30%;
-height: 80%;
+ width: 30%;
+ height: 80%;
 `;
 const DataWrapper = styled.div`
-width: 25%;
-display: flex;
-justify-content: center;
-flex-direction: column;
+ width: 25%;
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
 `;
 const Legend = styled.p`
-color: #356eb7;
-width:80%;
-margin-left: 10px;
+ color: #356eb7;
+ width:80%;
+ margin-left: 10px;
 `;
 const ButtonWrapper = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-background: #f9e01d;
-color:#356eb7; 
-padding: 5px 10px;
-cursor: pointer;
-user-select: none;
-margin-top: 55px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background: #f9e01d;
+ color:#356eb7; 
+ padding: 5px 10px;
+ cursor: pointer;
+ user-select: none;
+ margin-top: 55px;
 `;
 const Arrow = styled.img`
-height: 50px;
-width: 50px;
-color: yellow; 
+ height: 50px;
+ width: 50px;
+ color: yellow; 
 `;
 const FooterHead = styled.h2`
-font-size: 60px;
-font-weight: 600;
-color: #356eb7;
-text-transform: uppercase;
-width: 500px;
-display: flex;
-justify-content: center;
-align-items: center;
+ font-size: 60px;
+ font-weight: 600;
+ color: #356eb7;
+ text-transform: uppercase;
+ width: 500px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 `;
 const ButtonText = styled.p`
-font-weight: 600;
-font-size: 25px;
+ font-weight: 600;
+ font-size: 25px;
 `;
 const Bold = styled.h2`
-font-weight: 600;
-text-transform: capitalize;
+ font-weight: 600;
+ text-transform: capitalize;
 `;
 export const PokePage = ({ pokeData }) => {
     const[loading,setLoading] = useState(false);

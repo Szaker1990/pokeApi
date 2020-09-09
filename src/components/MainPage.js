@@ -6,28 +6,37 @@ import {PokeTable} from "./PokeTable";
 import {PokePage} from "./PokePage";
 
 const Container = styled.div`
-height: 100vh;
-width: 100%;
-background: white;
-display: flex;
+//height: 100vh;
+ width: 100vw;
+ background: white;
+ display: flex;
 `;
 const ColumnLeft = styled.div`
-width: 50%;
-margin: 20px;
-background: #ffffff url(${background}) no-repeat;
-background-size: cover
+ width: 50%;
+ margin: 20px;
+ background: #ffffff url(${background}) no-repeat;
+ background-size: cover;
+ @media (max-width: 1300px) {
+ display: none;
+}
+ 
 `;
 const ColumnRight = styled.div`
-width: 50%;
-margin: 0 20px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+ width: 50%;
+ margin: 0 20px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ @media (max-width: 1300px) {
+ width: 90%;
+ margin: 5%;
+ height: 90vh;
+}
 `;
 const Img = styled.img`
-height: 80px;
-`
+ height: 80px;
+`;
 export const MainPage = () => {
     const[pokemon,setPokemon] = useState(null);
     const ViewPokemonData = (e) => {
