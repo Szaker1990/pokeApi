@@ -6,9 +6,11 @@ const Div = styled.div`
  margin: 0 10px;
  color: #356eb7;
  font-family: 'Oswald', sans-serif;
+ 
 `;
 const Header = styled.p`
  font-weight: 600;
+ line-height: 1;
 `;
 const Text = styled.p`
  font-weight: 400;
@@ -17,8 +19,8 @@ const Text = styled.p`
 export const DataCell = ({title, text}) => {
     return (
         <Div>
-            <Header>{title}:</Header>
-            <Text> {text} </Text>
+            <Header>{title}: </Header>
+            <Text> {text}</Text>
         </Div>
     )
 }

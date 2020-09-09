@@ -6,7 +6,7 @@ import {PokeTable} from "./PokeTable";
 import {PokePage} from "./PokePage";
 
 const Container = styled.div`
-//height: 100vh;
+ //height: 100vh;
  width: 100vw;
  background: white;
  display: flex;
@@ -23,16 +23,19 @@ const ColumnLeft = styled.div`
 `;
 const ColumnRight = styled.div`
  width: 50%;
- margin: 0 20px;
+ margin: 25px 20px 0;
  display: flex;
  flex-direction: column;
  align-items: center;
  justify-content: center;
  @media (max-width: 1300px) {
- width: 90%;
- margin: 5%;
- height: 90vh;
-}
+  width: 90%;
+  margin: 5%;
+  height: 90vh;
+ }
+ @media (max-width: 600px) {
+ margin-top: 50px;
+ }
 `;
 const Img = styled.img`
  height: 80px;
