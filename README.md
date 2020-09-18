@@ -1,4 +1,5 @@
-# Pokemon App
+# Recruitment Task
+## Pokemon App
 
 React App based on Pokeapi.co
 
